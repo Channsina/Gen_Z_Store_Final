@@ -9,14 +9,13 @@ export default function ProductCard({ product }) {
   return (
     <div className="max-w-sm lg:max-w-md bg-white rounded-3xl shadow-xl p-4 overflow-hidden transition-all duration-500 transform hover:translate-y-1 hover:shadow-purple-200 group animate-fadeUp">
 
-      {/* Image */}
       <div className="relative rounded-2xl overflow-hidden">
         <img src={product.image} alt={product.title} loading="lazy" className="w-full h-90 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
       </div>
 
       {/* Content */}
       <div className="px-2 pt-5 pb-3">
-        <h2 className="text-2xl font-bold text-slate-900 line-clamp-1">{product.title}</h2>
+        <h2 className="text-2xl font-bold text-slate-900 line-clamp-1">{product.name}</h2>
 
         <p className="mt-2 text-slate-500 text-[15px] leading-relaxed line-clamp-2">
           {product.description}

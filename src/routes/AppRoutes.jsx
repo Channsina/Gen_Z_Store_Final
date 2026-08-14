@@ -10,11 +10,14 @@ import About from "../customer/About";
 import Products from "../customer/Products";
 import Contact from "../customer/Contact";
 import Dashboard from "../admin/Dashboard";
+import Checkout from "../customer/Checkout";
 
 function AppRoutes() {
   return (
     <div className="min-h-screen flex flex-col">
-      <Navbar />
+      <div className="sticky top-0 z-50">
+        <Navbar />
+      </div>
       <main className="flex-1">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,6 +29,7 @@ function AppRoutes() {
           <Route path="/products" element={<Products/>} />
           <Route path="/contact" element={<Contact/>} />
           <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </main>
       <Footer />

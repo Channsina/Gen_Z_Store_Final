@@ -56,6 +56,7 @@ export default function Navbar() {
                 <div className="hidden md:flex items-center space-x-5">
                     <a href="/" className="hover:text-purple-600">Home</a>
                     <a href="/products" className="hover:text-purple-600">Products</a>
+                    <a href="/service" className="hover:text-purple-600">Service</a>
                     <a href="/about" className="hover:text-purple-600">About</a>
                     <a href="/contact" className="hover:text-purple-600">Contact</a>
                 </div>
@@ -159,6 +160,7 @@ export default function Navbar() {
                         )}
                         <a href="/" className="hover:text-purple-600">Home</a>
                         <a href="/products" className="hover:text-purple-600">Products</a>
+                        <a href="/service" className="hover:text-purple-600">Service</a>
                         <a href="/about" className="hover:text-purple-600">About</a>
                         <a href="/contact" className="hover:text-purple-600">Contact</a>
                         {isAdmin && (

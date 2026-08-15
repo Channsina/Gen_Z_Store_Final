@@ -18,6 +18,7 @@ import AdminProducts from "../admin/Products";
 import AdminStock from "../admin/Stock";
 import AdminMessages from "../admin/Message";
 import AdminUsers from "../admin/Customer";
+import Services from "../customer/Service";
 
 function StoreLayout({ children }) {
   return (
@@ -59,6 +60,7 @@ function AppRoutes() {
               <Route path="/products" element={<Products />} />
               <Route path="/contact" element={<Contact />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/service" element={<Services />} />
             </Routes>
           </StoreLayout>
         }

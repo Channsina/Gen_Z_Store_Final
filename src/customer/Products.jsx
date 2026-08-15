@@ -1,6 +1,6 @@
 import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
-import { getProductsByCategory } from "../data/products";
+import { useProducts, getProductsByCategory } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 
 const tabs = [
@@ -13,22 +13,22 @@ const tabs = [
 // Hero image/heading per category, same data as the old heroImages object
 const heroImages = {
   men: {
-    src: "https://cdn.shopify.com/s/files/1/0618/4045/7924/files/Tall-Mens-Summer-Clothes.jpg",
+    src: "../images/heroImages/men.png",
     alt: "Men Style Hero",
     heading: "DISCOVER MEN STYLE HERE WITH",
   },
   women: {
-    src: "https://www.wmn.de/wp-content/uploads/sites/2/2022/08/gen-z-style.jpg",
+    src: "../images/heroImages/women.png",
     alt: "Women Style Hero",
     heading: "DISCOVER WOMEN STYLE HERE WITH",
   },
   couple: {
-    src: "https://glance-web.glance-cdn.com/8941_8dff8f24fc.jpg",
+    src: "../images/heroImages/couple.png",
     alt: "Couple Style Hero",
     heading: "DISCOVER COUPLE STYLE HERE WITH",
   },
   all: {
-    src: "https://www.stylumia.ai/wp-content/uploads/2023/09/Gen-Z-Style-Signals-Square-min.png",
+    src: "../images/heroImages/all.png",
     alt: "Premium Products",
     heading: "DISCOVER ALL STYLE HERE WITH",
   },
@@ -38,11 +38,12 @@ export default function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const category = searchParams.get("category") || "all";
   const [searchTerm, setSearchTerm] = useState("");
+  const { products, loading } = useProducts();
 
   const hero = heroImages[category] || heroImages.all;
 
   const list = useMemo(() => {
-    const byCategory = getProductsByCategory(category);
+    const byCategory = getProductsByCategory(products, category);
     const term = searchTerm.trim().toLowerCase();
     if (!term) return byCategory;
     return byCategory.filter(
@@ -50,7 +51,7 @@ export default function Products() {
         p.name.toLowerCase().includes(term) ||
         p.description?.toLowerCase().includes(term)
     );
-  }, [category, searchTerm]);
+  }, [products, category, searchTerm]);
 
   return (
     <div>
@@ -61,7 +62,7 @@ export default function Products() {
           <h1 className="text-white text-lg md:text-4xl lg:text-5xl font-extrabold text-center mb-2 drop-shadow-lg leading-tight">
             {hero.heading}
             <br />
-            <span className="text-brand-accent">PREMIUM PRODUCTS</span>
+            <span className="text-pink-600">PREMIUM PRODUCTS</span>
           </h1>
         </div>
       </section>
@@ -75,7 +76,7 @@ export default function Products() {
             <svg className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-4.35-4.35M17 11a6 6 0 11-12 0 6 6 0 0112 0z" />
             </svg>
-            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search products..." className="w-full rounded-full bg-white border border-gray-400 shadow-sm pl-10 pr-10 py-3 text-sm outline-none focus:border-purple-800 transition-colors"/>
+            <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} placeholder="Search products..." className="w-full rounded-xl bg-white border border-purple-200 shadow-sm pl-10 pr-10 py-3 text-sm outline-none focus:border-purple-800 transition-colors"/>
             {searchTerm && (
               <button type="button" onClick={() => setSearchTerm("")} aria-label="Clear search" className="absolute right-4 top-1/2 -translate-y-1/2 text-black/40 hover:text-ink">
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -90,7 +91,7 @@ export default function Products() {
               value={category}
               onChange={(e) =>
                 setSearchParams(e.target.value === "all" ? {} : { category: e.target.value })
-              } className="w-full appearance-none rounded-full bg-white border border-gray-400 shadow-sm pl-5 pr-10 py-3 text-sm outline-none focus:border-purple-800 transition-colors cursor-pointer">
+              } className="w-full appearance-none rounded-xl bg-white border border-purple-200 shadow-sm pl-5 pr-10 py-3 text-sm outline-none focus:border-purple-800 transition-colors cursor-pointer">
               {tabs.map((t) => (
                 <option key={t.value} value={t.value}>
                   {t.label}
@@ -110,8 +111,8 @@ export default function Products() {
           ))}
         </div>
 
-        {list.length === 0 && (
-          <p className="text-black/50 text-center py-16">
+        {!loading && list.length === 0 && (
+          <p className="text-gray-400 text-center py-16">
             {searchTerm
               ? `No products match "${searchTerm}".`
               : "No products found in this category yet."}

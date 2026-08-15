@@ -107,12 +107,15 @@ export default function Contact() {
 
                     <p className="text-gray-400 mb-8">Let's send us a message</p>
 
-                    {status === "sent" ? (
-                        <div className="rounded-2xl bg-purple-50 border border-purple-200 p-6 text-purple-700">
-                            Thanks! Your message has been sent — we'll get back to you
-                            soon.
+                    {status === "sent" && (
+                        <div className="mb-6 rounded-2xl bg-purple-50 border border-purple-200 p-4 text-purple-700 flex items-center justify-between gap-3">
+                            <span>Thanks! Your message has been sent — we'll get back to you soon.</span>
+                            <button type="button" onClick={() => setStatus("idle")} className="text-purple-500 hover:text-purple-700 text-sm font-600 shrink-0" aria-label="Dismiss">
+                                ✕
+                            </button>
                         </div>
-                    ) : (
+                    )}
+
                     <form onSubmit={handleSubmit} className="space-y-5">
                         <div>
                         <label className="block text-gray-600 mb-2">
@@ -142,7 +145,6 @@ export default function Contact() {
                         </p>
                         )}
                     </form>
-                    )}
                 </div>
             </div>
         </main>

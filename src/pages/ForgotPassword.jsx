@@ -24,7 +24,7 @@ function ForgotPassword() {
       await sendPasswordResetEmail(auth, email, {
         // Where the reset link in the email should send the user back to.
         // Must be an authorized domain in your Firebase Auth settings.
-        url: `${window.location.origin}/login`,
+        url: `${window.location.origin}/reset-password`,
       });
       setSent(true);
     } catch (err) {

@@ -28,9 +28,9 @@ export default function Footer() {
             <h3 className="text-xs font-semibold uppercase tracking-widest mb-4 text-white">Products</h3>
             <ul className="space-y-2.5 text-sm">
               <li><a href="/products" className="hover:text-purple-600 transition-colors">All Style</a></li>
-              <li><a href="/men" className="hover:text-purple-600 transition-colors">Men's Style</a></li>
-              <li><a href="/women" className="hover:text-purple-600 transition-colors">Women's Style</a></li>
-              <li><a href="/couple" className="hover:text-purple-600 transition-colors">Couple's Style</a></li>
+              <li><a href="/products?category=men" className="hover:text-purple-600 transition-colors">Men's Style</a></li>
+              <li><a href="/products?category=women" className="hover:text-purple-600 transition-colors">Women's Style</a></li>
+              <li><a href="/products?category=couple" className="hover:text-purple-600 transition-colors">Couple's Style</a></li>
             </ul>
           </div>
 

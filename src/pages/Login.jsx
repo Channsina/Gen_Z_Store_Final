@@ -8,13 +8,15 @@ import {
   browserSessionPersistence,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { auth, db } from "../lib/firebaseClient";
 const googleProvider = new GoogleAuthProvider();
 
 function Login() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from;
 
   const [formData, setFormData] = useState({ email: "", password: "" });
   const [remember, setRemember] = useState(false);
@@ -25,15 +27,17 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // Look up the user's role in Firestore and send them to the right place
+  // Look up the user's role in Firestore and send them to the right place.
+  // If they were redirected here from a protected action (e.g. Add to
+  // Cart / Checkout), send them back there instead.
   const redirectByRole = async (uid) => {
     const userDoc = await getDoc(doc(db, "users", uid));
-    if (!userDoc.exists()) {
-      navigate("/");
+    const role = userDoc.exists() ? userDoc.data().role : "customer";
+    if (from && role !== "admin") {
+      navigate(from);
       return;
     }
-    const userData = userDoc.data();
-    navigate(userData.role === "admin" ? "/dashboard" : "/");
+    navigate(role === "admin" ? "/dashboard" : "/");
   };
 
   const handleSubmit = async (e) => {
@@ -122,6 +126,12 @@ function Login() {
             </div>
           )}
 
+          {!error && from && (
+            <div className="mb-5 rounded-xl bg-purple-50 border border-purple-200 text-purple-700 text-sm px-4 py-2.5">
+              Log in to continue with your cart and checkout.
+            </div>
+          )}
+
           <form className="space-y-5" onSubmit={handleSubmit}>
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1.5">
@@ -173,7 +183,7 @@ function Login() {
 
           <p className="text-center text-sm text-gray-500 mt-8">
             Don't have an account?{" "}
-            <Link to="/Register" className="text-purple-600 font-medium hover:text-purple-700">
+            <Link to="/Register" state={from ? { from } : undefined} className="text-purple-600 font-medium hover:text-purple-700">
               Sign up
             </Link>
           </p>

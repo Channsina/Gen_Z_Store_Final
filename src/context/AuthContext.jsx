@@ -6,12 +6,15 @@ import {
   signOut,
   updateProfile,
 } from "firebase/auth";
-import { auth } from "../lib/firebaseClient";
+import { doc, onSnapshot } from "firebase/firestore";
+import { auth, db } from "../lib/firebaseClient";
 import { AuthContext } from "./auth-context";
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
+  const [profile, setProfile] = useState(null); // Firestore users/{uid} doc (role, fullName, etc.)
   const [loading, setLoading] = useState(true);
+  const [profileLoading, setProfileLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
@@ -20,6 +23,25 @@ export function AuthProvider({ children }) {
     });
     return unsubscribe;
   }, []);
+
+  // Keep the Firestore profile (role, etc.) in sync with the logged-in user
+  useEffect(() => {
+    if (!user) {
+      setProfile(null);
+      setProfileLoading(false);
+      return;
+    }
+    setProfileLoading(true);
+    const unsubscribe = onSnapshot(
+      doc(db, "users", user.uid),
+      (snap) => {
+        setProfile(snap.exists() ? { id: snap.id, ...snap.data() } : null);
+        setProfileLoading(false);
+      },
+      () => setProfileLoading(false)
+    );
+    return unsubscribe;
+  }, [user]);
 
   const login = (email, password) =>
     signInWithEmailAndPassword(auth, email, password);
@@ -34,7 +56,18 @@ export function AuthProvider({ children }) {
 
   const logout = () => signOut(auth);
 
-  const value = { user, loading, login, signup, logout };
+  const isAdmin = profile?.role === "admin";
+
+  const value = {
+    user,
+    profile,
+    loading,
+    profileLoading,
+    isAdmin,
+    login,
+    signup,
+    logout,
+  };
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

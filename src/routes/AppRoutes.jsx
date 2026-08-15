@@ -9,31 +9,61 @@ import Register from "../pages/Register";
 import About from "../customer/About";
 import Products from "../customer/Products";
 import Contact from "../customer/Contact";
-import Dashboard from "../admin/Dashboard";
 import Checkout from "../customer/Checkout";
 
-function AppRoutes() {
+import AdminLayout from "../admin/AdminLayout";
+import Dashboard from "../admin/Dashboard";
+import AdminOrders from "../admin/Order";
+import AdminProducts from "../admin/Products";
+import AdminStock from "../admin/Stock";
+import AdminMessages from "../admin/Message";
+import AdminUsers from "../admin/Customer";
+
+function StoreLayout({ children }) {
   return (
     <div className="min-h-screen flex flex-col">
       <div className="sticky top-0 z-50">
         <Navbar />
       </div>
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
-          <Route path="/reset-password" element={<ResetPassword/>} />
-          <Route path="/forgot-password" element={<ForgotPassword/>} />
-          <Route path="/about" element={<About/>} />
-          <Route path="/products" element={<Products/>} />
-          <Route path="/contact" element={<Contact/>} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-      </main>
+      <main className="flex-1">{children}</main>
       <Footer />
     </div>
+  );
+}
+
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Admin dashboard - its own sidebar layout, no storefront navbar/footer */}
+      <Route path="/dashboard" element={<AdminLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path="orders" element={<AdminOrders />} />
+        <Route path="products" element={<AdminProducts />} />
+        <Route path="stock" element={<AdminStock />} />
+        <Route path="messages" element={<AdminMessages />} />
+        <Route path="users" element={<AdminUsers />} />
+      </Route>
+
+      {/* Storefront */}
+      <Route
+        path="/*"
+        element={
+          <StoreLayout>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Register />} />
+              <Route path="/reset-password" element={<ResetPassword />} />
+              <Route path="/forgot-password" element={<ForgotPassword />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/checkout" element={<Checkout />} />
+            </Routes>
+          </StoreLayout>
+        }
+      />
+    </Routes>
   );
 }
 

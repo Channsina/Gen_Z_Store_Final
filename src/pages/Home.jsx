@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
-import { products } from "../data/products";
+import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
 
 const categories = [
   {
     type: "men",
-    image: "https://i.pinimg.com/736x/c6/6d/08/c66d080e70457062b9d52fd18aae5dc1.jpg",
+    image: "../images/homeImage/menCateory.png",
     title: "Men",
     description:
       "Modern and versatile looks for men, featuring tailored trousers, casual shirts, and sleek footwear that balance comfort with confident style.",
@@ -13,7 +13,7 @@ const categories = [
   },
   {
     type: "women",
-    image: "https://i.pinimg.com/736x/6c/0a/8f/6c0a8f549cb1b54972b67df60393ca24.jpg",
+    image: "../images/homeImage/womenCateory.png",
     title: "Women",
     description:
       "Elegant and versatile outfits curated for women, featuring chic dresses, stylish tops, and modern accessories that highlight confidence and individuality.",
@@ -21,7 +21,7 @@ const categories = [
   },
   {
     type: "couple",
-    image: "https://i.pinimg.com/736x/8e/eb/5e/8eeb5e5e2758d9a7f08f1c3558b30fe4.jpg",
+    image: "../images/homeImage/coupleCateory.png",
     title: "Couple",
     description:
       "Coordinated outfits designed for couples, blending casual denim, relaxed trousers, and matching sandals for a stylish paired look.",
@@ -33,42 +33,42 @@ const collections = [
   {
     label: "Winter Collection",
     image:
-      "https://www.toploadbrands.com/wp-content/uploads/2025/07/Tactical-Winter-Clothing-1024x576.jpg",
+      "../images/homeImage/winterCollection.png",
     className:
       "sm:col-span-2 h-50 rounded-t-2xl md:rounded-tl-2xl lg:rounded-tl-2xl lg:rounded-none",
   },
   {
     label: "Pants",
     image:
-      "https://saintandsofia.com/cdn/shop/files/keller-wide-leg-pant-maroon-women-s-trousers-saint-sofia-uk-37129850912945.jpg?v=1769461462&width=%7Bwidth%7D",
+      "../images/homeImage/pant.png",
     className: "sm:row-span-2 h-[300px] sm:h-[420px]",
   },
   {
     label: "Skirts",
     image:
-      "https://i.pinimg.com/originals/1e/e7/18/1ee71809038ea892c9384d62596b4637.jpg",
+      "../images/homeImage/skirt.png",
     className: "sm:row-span-2 h-[300px] sm:h-[420px] lg:rounded-se-2xl",
   },
   {
     label: "Shoes",
-    image: "https://cdn.mos.cms.futurecdn.net/TSDBLC4aye7F9p73BUJuA9.jpg",
+    image: "../images/homeImage/shoes.png",
     className: "sm:col-span-2 h-52",
   },
   {
     label: "T-Shirts",
     image:
-      "https://down-ph.img.susercontent.com/file/cn-11134208-7ras8-m795el42u12a33",
+      "../images/homeImage/t-Shirt.png",
     className: "h-[300px] sm:h-[420px] lg:rounded-es-2xl",
   },
   {
     label: "Dresses",
     image:
-      "https://n.nordstrommedia.com/it/e91ed5da-52a2-4479-9590-dcfd587ae611.jpeg?h=368&w=240&dpr=2",
+      "../images/homeImage/dress.png",
     className: "h-[300px] sm:h-[420px]",
   },
   {
     label: "Jackets",
-    image: "https://nypost.com/wp-content/uploads/sites/2/2022/09/1-14.png",
+    image: "../images/homeImage/jacket.png",
     className:
       "sm:row-span-4 sm:col-span-2 h-[300px] sm:h-[420px] rounded-b-2xl md:rounded-b-2xl lg:rounded-br-2xl lg:rounded-none",
   },
@@ -99,6 +99,7 @@ const whyUs = [
 ];
 
 export default function Home() {
+  const { products } = useProducts();
   const popular = products.filter((p) => p.bestSeller).slice(0, 3);
 
   return (
@@ -116,21 +117,14 @@ export default function Home() {
               Trendy, affordable fashion made for teens and young adults.
               Express yourself with outfits that match your vibe.
             </p>
-            <Link
-              to="/products"
-              className="bg-purple-600 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-purple-500 transition duration-300 inline-block"
-            >
+            <Link to="/products" className="bg-purple-600 text-white px-8 py-3 rounded-lg shadow-xl hover:bg-purple-500 transition duration-300 inline-block" >
               Shop Now
             </Link>
           </div>
 
           {/* Image Content */}
           <div className="md:w-1/2 flex justify-center">
-            <img
-              src="https://i.pinimg.com/736x/9c/fc/2c/9cfc2ccfd4712fd543ce178a64aabfb9.jpg"
-              alt="GenZ fashion"
-              className="rounded-xl shadow-2xl max-h-[450px] object-cover"
-            />
+            <img src="../images/homeImage/genzFasion.png" alt="GenZ fashion" className="rounded-xl shadow-2xl max-h-[450px] object-cover"/>
           </div>
         </div>
       </div>
@@ -138,15 +132,8 @@ export default function Home() {
       {/* Category */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl p-5 mt-4">
         {categories.map((c) => (
-          <div
-            key={c.title}
-            className="relative w-full h-56 rounded-2xl overflow-hidden group"
-          >
-            <img
-              src={c.image}
-              alt={c.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
+          <div key={c.title} className="relative w-full h-56 rounded-2xl overflow-hidden group">
+            <img src={c.image} alt={c.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between gap-3">
               <div className="min-w-0">
@@ -157,18 +144,8 @@ export default function Home() {
                   {c.description}
                 </p>
               </div>
-              <Link
-                to={c.to}
-                aria-label={`Shop ${c.title}`}
-                className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 transition-colors"
-              >
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                >
+              <Link to={c.to} aria-label={`Shop ${c.title}`} className="flex-shrink-0 w-9 h-9 rounded-full bg-white/15 backdrop-blur-sm flex items-center justify-center hover:bg-white/25 transition-colors">
+                <svg className="w-4 h-4 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </Link>
@@ -183,11 +160,17 @@ export default function Home() {
           <h2 className="text-3xl font-bold mb-16 text-center text-purple-600">
             Popular Products
           </h2>
+          {popular.length === 0 ? (
+            <p className="text-center text-black/40">
+              No products yet — add some from the admin dashboard.
+            </p>
+          ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 md:gap-4 lg:gap-4 gap-6">
             {popular.map((p) => (
               <ProductCard key={p.id} product={p} />
             ))}
           </div>
+          )}
         </div>
       </div>
 
@@ -237,15 +220,8 @@ export default function Home() {
       {/* Collection Mosaic */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-7xl mx-auto p-5">
         {collections.map((c) => (
-          <div
-            key={c.label}
-            className={`relative overflow-hidden ${c.className}`}
-          >
-            <img
-              src={c.image}
-              alt={c.label}
-              className="w-full h-full object-cover"
-            />
+          <div key={c.label} className={`relative overflow-hidden ${c.className}`}>
+            <img src={c.image} alt={c.label} className="w-full h-full object-cover"/>
             <div className="absolute inset-0 flex items-center justify-center bg-black/20">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
                 {c.label}
@@ -264,17 +240,9 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 sm:gap-4 px-0 md:px-8 lg:px-8">
             {whyUs.map((w) => (
-              <div
-                key={w.title}
-                className="bg-white p-4 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-center group"
-              >
+              <div key={w.title} className="bg-white p-4 lg:p-8 rounded-2xl shadow-md hover:shadow-xl transition duration-300 text-center group">
                 <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto mb-5 flex items-center justify-center rounded-full bg-indigo-100 group-hover:bg-purple-600 transition">
-                  <svg
-                    className="w-7 h-7 sm:w-8 sm:h-8 text-purple-600 group-hover:text-white transition"
-                    fill="currentColor"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 640 640"
-                  >
+                  <svg className="w-7 h-7 sm:w-8 sm:h-8 text-purple-600 group-hover:text-white transition" fill="currentColor" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 640">
                     {w.icon}
                   </svg>
                 </div>

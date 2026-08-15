@@ -6,7 +6,7 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { doc, getDoc, setDoc, serverTimestamp } from "firebase/firestore";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 import { auth, db } from "../lib/firebaseClient";
 
@@ -14,6 +14,8 @@ const googleProvider = new GoogleAuthProvider();
 
 function Register() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from;
 
   const [formData, setFormData] = useState({
     fullName: "",
@@ -75,7 +77,7 @@ function Register() {
       });
 
       // 4. Redirect to login
-      navigate("/login");
+      navigate("/login", { state: from ? { from } : undefined });
     } catch (err) {
       console.error(err.code, err.message);
       if (err.code === "auth/email-already-in-use") {
@@ -111,7 +113,7 @@ function Register() {
         });
       }
 
-      navigate("/login");
+      navigate("/login", { state: from ? { from } : undefined });
     } catch (err) {
       console.error(err);
       setError("Google sign-up failed. Please try again.");

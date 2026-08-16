@@ -4,6 +4,7 @@ import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { db } from "../lib/firebaseClient";
 import { useCart } from "../context/useCart";
 import { useAuth } from "../context/useAuth";
+import { publicUrl } from "../lib/publicUrl";
 
 export default function Checkout() {
   const { items, subtotal, updateQty, removeFromCart, clearCart } = useCart();
@@ -81,7 +82,7 @@ export default function Checkout() {
           )}
           {items.map((item) => (
             <div key={item.key} className="flex gap-4 bg-gray-100 shadow rounded-2xl p-4 hover:shadow-xl transition duration-300 group">
-              <img src={item.image} alt={item.name} className="w-20 h-24 object-cover rounded-xl"/>
+              <img src={publicUrl(item.image)} alt={item.name} className="w-20 h-24 object-cover rounded-xl"/>
               <div className="flex-1">
                 <h3 className="font-600">{item.name}</h3>
                 <p className="text-sm text-black/50">Size: {item.size}</p>

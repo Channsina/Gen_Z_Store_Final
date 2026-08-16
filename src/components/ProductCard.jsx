@@ -2,13 +2,22 @@ import { useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useCart } from "../context/useCart";
 import { useAuth } from "../context/useAuth";
+import { publicUrl } from "../lib/publicUrl";
 
 export default function ProductCard({ product }) {
-  const [size, setSize] = useState(product.sizes[0]);
+  const sizes = product?.sizes ?? [];
+  const [size, setSize] = useState(sizes[0]);
   const { addToCart } = useCart();
   const { user } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Guards against a malformed/missing product doc (e.g. one still being
+  // created, or missing required fields) so one bad entry can't crash the
+  // whole product grid. Placed after the hooks above so hook order stays
+  // consistent between renders (Rules of Hooks).
+  if (!product) return null;
+
   const outOfStock = typeof product.stock === "number" && product.stock <= 0;
   const lowStock =
     typeof product.stock === "number" && product.stock > 0 && product.stock <= 5;
@@ -42,7 +51,7 @@ export default function ProductCard({ product }) {
     <div className="max-w-sm lg:max-w-md bg-white rounded-3xl shadow-xl p-4 overflow-hidden transition-all duration-500 transform hover:translate-y-1 hover:shadow-purple-200 group animate-fadeUp">
 
       <div className="relative rounded-2xl overflow-hidden">
-        <img src={product.image} alt={product.title} loading="lazy" className="w-full h-90 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
+        <img src={publicUrl(product.image)} alt={product.name} loading="lazy" className="w-full h-90 object-cover transform group-hover:scale-110 transition-transform duration-700 ease-in-out"/>
         {outOfStock && (
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <span className="text-white font-bold tracking-wide uppercase text-sm bg-red-600 px-4 py-1.5 rounded-full">
@@ -67,7 +76,7 @@ export default function ProductCard({ product }) {
 
         {/* Size Options */}
         <div className="flex items-center flex-wrap text-gray-400 gap-2 mb-4 mt-4">
-          {product.sizes.map((s) => (
+          {sizes.map((s) => (
             <button key={s} type="button"onClick={() => setSize(s)} className={`px-3 py-1 border rounded-2xl text-sm transition ${
                 size === s
                   ? "bg-purple-600 border-purple-600 text-white"

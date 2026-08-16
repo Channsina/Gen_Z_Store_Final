@@ -63,6 +63,7 @@ export default function Products() {
     setEditingId(null);
     setShowForm(false);
     setUploadError("");
+    setSaveError("");
   };
 
   const startEdit = (p) => {
@@ -89,10 +90,13 @@ export default function Products() {
     }));
   };
 
+  const [saveError, setSaveError] = useState("");
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.price) return;
     setSaving(true);
+    setSaveError("");
     try {
       if (editingId) {
         await updateProduct(editingId, form);
@@ -102,7 +106,11 @@ export default function Products() {
       resetForm();
     } catch (err) {
       console.error(err);
-      alert("Something went wrong saving the product.");
+      setSaveError(
+        err.code === "permission-denied"
+          ? "Firestore blocked this save (permission-denied). Your account's Firestore role probably isn't \"admin\" yet, or the security rules haven't been deployed — see firestore.rules in the project root."
+          : err.message || "Something went wrong saving the product."
+      );
     } finally {
       setSaving(false);
     }
@@ -326,6 +334,12 @@ export default function Products() {
             />
             <span className="text-sm">Mark as best seller (shown on homepage)</span>
           </label>
+
+          {saveError && (
+            <div className="sm:col-span-2 rounded-xl bg-red-50 border border-red-200 text-red-700 text-sm px-4 py-3">
+              {saveError}
+            </div>
+          )}
 
           <div className="sm:col-span-2 flex gap-3 pt-2">
             <button

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/useAuth";
 import { useCart } from "../context/useCart";
 import { useToast } from "../context/useToast";
@@ -54,16 +54,16 @@ export default function Navbar() {
 
                 {/* Desktop links */}
                 <div className="hidden md:flex items-center space-x-5">
-                    <a href="/" className="hover:text-purple-600">Home</a>
-                    <a href="/products" className="hover:text-purple-600">Products</a>
-                    <a href="/service" className="hover:text-purple-600">Service</a>
-                    <a href="/about" className="hover:text-purple-600">About</a>
-                    <a href="/contact" className="hover:text-purple-600">Contact</a>
+                    <Link to="/" className="hover:text-purple-600">Home</Link>
+                    <Link to="/products" className="hover:text-purple-600">Products</Link>
+                    <Link to="/service" className="hover:text-purple-600">Service</Link>
+                    <Link to="/about" className="hover:text-purple-600">About</Link>
+                    <Link to="/contact" className="hover:text-purple-600">Contact</Link>
                 </div>
 
                 {/* Desktop right side */}
                 <div className="hidden md:flex items-center space-x-4">
-                    <a href="/checkout" onClick={handleCartClick} className="relative" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
+                    <Link to="/checkout" onClick={handleCartClick} className="relative" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
                         <svg className="w-10 h-10 bg-purple-100 rounded-lg p-2 shadow hover:bg-purple-200 text-purple-700" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L20.96 5H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
                         </svg>
@@ -72,7 +72,7 @@ export default function Navbar() {
                                 {count > 99 ? "99+" : count}
                             </span>
                         )}
-                    </a>
+                    </Link>
 
                     {user ? (
                         <div className="relative">
@@ -91,13 +91,13 @@ export default function Navbar() {
                             {accountOpen && (
                                 <div className="absolute right-0 mt-2 w-48 bg-white rounded-xl shadow-lg border border-black/10 py-2 z-20">
                                     {isAdmin && (
-                                        <a href="/dashboard" onClick={() => setAccountOpen(false)} className="block px-4 py-2 text-sm text-purple-700 hover:bg-purple-50">
+                                        <Link to="/dashboard" onClick={() => setAccountOpen(false)} className="block px-4 py-2 text-sm text-purple-700 hover:bg-purple-50">
                                             Admin Dashboard
-                                        </a>
+                                        </Link>
                                     )}
-                                    <a href="/checkout" onClick={() => setAccountOpen(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
+                                    <Link to="/checkout" onClick={() => setAccountOpen(false)} className="block px-4 py-2 text-sm text-gray-700 hover:bg-purple-50">
                                         My Cart
-                                    </a>
+                                    </Link>
                                     <button
                                         type="button"
                                         onClick={handleLogoutClick}
@@ -109,15 +109,15 @@ export default function Navbar() {
                             )}
                         </div>
                     ) : (
-                        <a href="/login" className="h-10 flex text-white rounded-2xl shadow bg-purple-600 hover:bg-purple-700 items-center px-5 whitespace-nowrap">
+                        <Link to="/login" className="h-10 flex text-white rounded-2xl shadow bg-purple-600 hover:bg-purple-700 items-center px-5 whitespace-nowrap">
                             Login
-                        </a>
+                        </Link>
                     )}
                 </div>
 
                 {/* Mobile */}
                 <div className="flex md:hidden items-center space-x-3">
-                    <a href="/checkout" onClick={handleCartClick} className="relative" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
+                    <Link to="/checkout" onClick={handleCartClick} className="relative" aria-label={`Cart, ${count} item${count === 1 ? "" : "s"}`}>
                         <svg className="w-9 h-9 bg-purple-100 rounded-lg p-2 text-purple-700 shadow" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12L8.1 13h7.45c.75 0 1.41-.41 1.75-1.03L20.96 5H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
                         </svg>
@@ -126,16 +126,16 @@ export default function Navbar() {
                                 {count > 99 ? "99+" : count}
                             </span>
                         )}
-                    </a>
+                    </Link>
 
                     {user ? (
                         <button type="button" onClick={handleLogoutClick} className="h-9 w-full shadow px-4 flex text-white rounded-xl bg-purple-600 hover:bg-purple-700 items-center justify-center cursor-pointer whitespace-nowrap">
                             Logout
                         </button>
                     ) : (
-                        <a href="/login" className="h-9 w-full shadow px-4 flex text-white rounded-xl bg-purple-600 hover:bg-purple-700 items-center justify-center">
+                        <Link to="/login" className="h-9 w-full shadow px-4 flex text-white rounded-xl bg-purple-600 hover:bg-purple-700 items-center justify-center">
                             Login
-                        </a>
+                        </Link>
                     )}
 
                     <button type="button" onClick={() => setMenuOpen((prev) => !prev)} className="text-purple-700 cursor-pointer" aria-label="Toggle menu" aria-expanded={menuOpen}>
@@ -158,13 +158,13 @@ export default function Navbar() {
                                 Hi, {displayName}
                             </span>
                         )}
-                        <a href="/" className="hover:text-purple-600">Home</a>
-                        <a href="/products" className="hover:text-purple-600">Products</a>
-                        <a href="/service" className="hover:text-purple-600">Service</a>
-                        <a href="/about" className="hover:text-purple-600">About</a>
-                        <a href="/contact" className="hover:text-purple-600">Contact</a>
+                        <Link to="/" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>Home</Link>
+                        <Link to="/products" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>Products</Link>
+                        <Link to="/service" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>Service</Link>
+                        <Link to="/about" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>About</Link>
+                        <Link to="/contact" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>Contact</Link>
                         {isAdmin && (
-                            <a href="/dashboard" className="hover:text-purple-600">Admin Dashboard</a>
+                            <Link to="/dashboard" className="hover:text-purple-600" onClick={() => setMenuOpen(false)}>Admin Dashboard</Link>
                         )}
                     </div>
                     )}

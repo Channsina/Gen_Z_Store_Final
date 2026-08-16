@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   FaFacebookF,
   FaInstagram,
@@ -36,10 +37,10 @@ export default function Footer() {
           <div className="md:pl-16">
             <h3 className="text-xs font-semibold uppercase tracking-widest mb-4 text-white">Products</h3>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="/products" className="hover:text-purple-300 transition-colors">All Style</a></li>
-              <li><a href="/products?category=men" className="hover:text-purple-300 transition-colors">Men's Style</a></li>
-              <li><a href="/products?category=women" className="hover:text-purple-300 transition-colors">Women's Style</a></li>
-              <li><a href="/products?category=couple" className="hover:text-purple-300 transition-colors">Couple's Style</a></li>
+              <li><Link to="/products" className="hover:text-purple-300 transition-colors">All Style</Link></li>
+              <li><Link to="/products?category=men" className="hover:text-purple-300 transition-colors">Men's Style</Link></li>
+              <li><Link to="/products?category=women" className="hover:text-purple-300 transition-colors">Women's Style</Link></li>
+              <li><Link to="/products?category=couple" className="hover:text-purple-300 transition-colors">Couple's Style</Link></li>
             </ul>
           </div>
 
@@ -47,9 +48,9 @@ export default function Footer() {
           <div className="lg:pl-16">
             <h3 className="text-xs font-semibold uppercase tracking-widest mb-4 text-white">Quick Link</h3>
             <ul className="space-y-2.5 text-sm">
-              <li><a href="/" className="hover:text-purple-300 transition-colors">Home</a></li>
-              <li><a href="/about" className="hover:text-purple-300 transition-colors">About</a></li>
-              <li><a href="/contact" className="hover:text-purple-300 transition-colors">Contact</a></li>
+              <li><Link to="/" className="hover:text-purple-300 transition-colors">Home</Link></li>
+              <li><Link to="/about" className="hover:text-purple-300 transition-colors">About</Link></li>
+              <li><Link to="/contact" className="hover:text-purple-300 transition-colors">Contact</Link></li>
             </ul>
           </div>
 

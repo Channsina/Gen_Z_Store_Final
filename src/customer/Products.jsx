@@ -13,7 +13,7 @@ const tabs = [
 // Hero image/heading per category, same data as the old heroImages object
 const heroImages = {
   men: {
-    src: "/images/heroImages/men.png",
+    src: "/images/heroImage/men.png",
     alt: "Men Style Hero",
     heading: "DISCOVER MEN STYLE HERE WITH",
   },

@@ -83,7 +83,7 @@ export default function Services() {
           <div className="relative">
             <div className="relative aspect-[4/5] sm:aspect-[5/4] rounded-3xl overflow-hidden bg-gradient-to-br from-purple-100 to-purple-200">
               <img
-                src="../images/goodService.png"
+                src="/images/goodService.png"
                 alt="GenZ Store customer wearing the latest collection"
                 className="w-full h-full object-cover"
                 onError={(e) => (e.currentTarget.style.display = "none")}

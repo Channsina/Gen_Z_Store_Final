@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 const categories = [
   {
     type: "men",
-    image: "../images/homeImage/menCateory.png",
+    image: "/images/homeImage/menCateory.png",
     title: "Men",
     description:
       "Modern and versatile looks for men, featuring tailored trousers, casual shirts, and sleek footwear that balance comfort with confident style.",
@@ -13,7 +13,7 @@ const categories = [
   },
   {
     type: "women",
-    image: "../images/homeImage/womenCateory.png",
+    image: "/images/homeImage/womenCateory.png",
     title: "Women",
     description:
       "Elegant and versatile outfits curated for women, featuring chic dresses, stylish tops, and modern accessories that highlight confidence and individuality.",
@@ -21,7 +21,7 @@ const categories = [
   },
   {
     type: "couple",
-    image: "../images/homeImage/coupleCateory.png",
+    image: "/images/homeImage/coupleCateory.png",
     title: "Couple",
     description:
       "Coordinated outfits designed for couples, blending casual denim, relaxed trousers, and matching sandals for a stylish paired look.",
@@ -33,42 +33,42 @@ const collections = [
   {
     label: "Winter Collection",
     image:
-      "../images/homeImage/winterCollection.png",
+      "/images/homeImage/winterCollection.png",
     className:
       "sm:col-span-2 h-50 rounded-t-2xl md:rounded-tl-2xl lg:rounded-tl-2xl lg:rounded-none",
   },
   {
     label: "Pants",
     image:
-      "../images/homeImage/pant.png",
+      "/images/homeImage/pant.png",
     className: "sm:row-span-2 h-[300px] sm:h-[420px]",
   },
   {
     label: "Skirts",
     image:
-      "../images/homeImage/skirt.png",
+      "/images/homeImage/skirt.png",
     className: "sm:row-span-2 h-[300px] sm:h-[420px] lg:rounded-se-2xl",
   },
   {
     label: "Shoes",
-    image: "../images/homeImage/shoes.png",
+    image: "/images/homeImage/shoes.png",
     className: "sm:col-span-2 h-52",
   },
   {
     label: "T-Shirts",
     image:
-      "../images/homeImage/t-Shirt.png",
+      "/images/homeImage/t-Shirt.png",
     className: "h-[300px] sm:h-[420px] lg:rounded-es-2xl",
   },
   {
     label: "Dresses",
     image:
-      "../images/homeImage/dress.png",
+      "/images/homeImage/dress.png",
     className: "h-[300px] sm:h-[420px]",
   },
   {
     label: "Jackets",
-    image: "../images/homeImage/jacket.png",
+    image: "/images/homeImage/jacket.png",
     className:
       "sm:row-span-4 sm:col-span-2 h-[300px] sm:h-[420px] rounded-b-2xl md:rounded-b-2xl lg:rounded-br-2xl lg:rounded-none",
   },
@@ -124,7 +124,7 @@ export default function Home() {
 
           {/* Image Content */}
           <div className="md:w-1/2 flex justify-center">
-            <img src="../images/homeImage/genzFasion.png" alt="GenZ fashion" className="rounded-xl shadow-2xl max-h-[450px] object-cover"/>
+            <img src="/images/homeImage/genzFasion.png" alt="GenZ fashion" className="rounded-xl shadow-2xl max-h-[450px] object-cover"/>
           </div>
         </div>
       </div>

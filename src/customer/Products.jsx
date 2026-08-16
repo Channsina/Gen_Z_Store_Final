@@ -13,22 +13,22 @@ const tabs = [
 // Hero image/heading per category, same data as the old heroImages object
 const heroImages = {
   men: {
-    src: "../images/heroImages/men.png",
+    src: "/images/heroImages/men.png",
     alt: "Men Style Hero",
     heading: "DISCOVER MEN STYLE HERE WITH",
   },
   women: {
-    src: "../images/heroImages/women.png",
+    src: "/images/heroImages/women.png",
     alt: "Women Style Hero",
     heading: "DISCOVER WOMEN STYLE HERE WITH",
   },
   couple: {
-    src: "../images/heroImages/couple.png",
+    src: "/images/heroImages/couple.png",
     alt: "Couple Style Hero",
     heading: "DISCOVER COUPLE STYLE HERE WITH",
   },
   all: {
-    src: "../images/heroImages/all.png",
+    src: "/images/heroImages/all.png",
     alt: "Premium Products",
     heading: "DISCOVER ALL STYLE HERE WITH",
   },

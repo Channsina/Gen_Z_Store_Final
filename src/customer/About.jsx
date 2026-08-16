@@ -3,16 +3,16 @@ import { publicUrl } from "../lib/publicUrl";
 export default function About() {
   return (
     <div className="bg-gray-50">
-      <div className="max-w-5xl p-5 mx-auto px-6 py-12 space-y-10">
+      <div className="max-w-6xl p-5 mx-auto px-6 py-12">
 
         {/* About GenZ Store */}
-        <div className="flex flex-col md:flex-row items-center gap-10">
-          <div className="bg-white w-[400px] h-96 rounded-xl shadow-lg overflow-hidden">
+        <div className="flex flex-col md:flex-row items-center gap-10 p-4">
+          <div className="bg-white w-[400px] h-96 sm:w-[350px] sm:h-90 rounded-xl shadow-lg overflow-hidden">
             <img src={publicUrl("/images/about1.png")} alt="GenZ fashion" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
           </div>
 
           <div className="flex-1 max-w-xl">
-            <h2 className="text-3xl font-semibold leading-snug mb-4 text-purple-500">
+            <h2 className="text-3xl font-semibold leading-snug mb-4 text-purple-600">
               About GenZ Store
             </h2>
             <p className="text-sm text-[#6b5d4f] leading-relaxed">
@@ -27,16 +27,16 @@ export default function About() {
         </div>
 
         {/* Why We Chose to Make It */}
-        <div className="flex flex-col md:flex-row-reverse items-center gap-10">
+        <div className="flex flex-col md:flex-row-reverse items-center gap-10 p-5">
 
           {/* Image right */}
-          <div className="bg-white w-[450px] h-96 rounded-xl shadow-lg overflow-hidden">
+          <div className="bg-white w-[400px] h-96 sm:w-[350px] sm:h-90 rounded-xl shadow-lg overflow-hidden">
             <img src={publicUrl("/images/about2.png")} alt="Fashion racks" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
           </div>
 
           {/* Text left */}
           <div className="flex-1 max-w-xl">
-            <h2 className="text-2xl font-semibold mb-4 text-purple-500">
+            <h2 className="text-3xl font-semibold mb-4 text-purple-600">
               Why We Chose to Make It
             </h2>
             <p className="text-sm text-[#6b5d4f] leading-relaxed">

@@ -3,6 +3,6 @@ import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  base: "/GenZ-Store/",
+   base: "/Gen_Z_Store_Final/",
   plugins: [react(), tailwindcss()],
 })

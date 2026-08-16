@@ -17,20 +17,7 @@ function sanitizeFilename(name) {
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
-/**
- * Local-dev-only image upload endpoint.
- *
- * Adds POST /api/upload-product-image to Vite's dev server. It saves the
- * uploaded file straight into public/images/products/ and returns the
- * public path (e.g. "/images/products/171234-my-shirt.jpg") that can be
- * stored directly as a product's `image` field.
- *
- * IMPORTANT: this only exists while `npm run dev` is running. It writes to
- * the local filesystem, so it will NOT work once the app is built and
- * deployed (Vercel/Netlify/etc. don't give you a writable, persistent
- * filesystem, and `vite preview` doesn't run this middleware). For a
- * deployed admin panel you'd need Firebase Storage (or similar) instead.
- */
+
 export default function localImageUploadPlugin() {
   const upload = multer({
     storage: multer.diskStorage({

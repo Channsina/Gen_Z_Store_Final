@@ -6,6 +6,7 @@ import {
   deleteProduct,
 } from "../hooks/useProducts";
 import Modal from "../components/Modal";
+import { publicUrl } from "../lib/publicUrl";
 
 const CATEGORIES = ["men", "women", "couple"];
 const SIZE_OPTIONS = ["XS", "S", "M", "L", "XL", "XXL"];
@@ -171,7 +172,7 @@ export default function Products() {
                   <td className="px-5 py-3">
                     <div className="flex items-center gap-3">
                       {p.image && (
-                        <img src={p.image} alt={p.name} className="w-10 h-10 rounded-lg object-cover" />
+                        <img src={publicUrl(p.image)} alt={p.name} className="w-10 h-10 rounded-lg object-cover" />
                       )}
                       <span className="font-600 line-clamp-1">{p.name}</span>
                       {p.bestSeller && (
@@ -252,7 +253,7 @@ export default function Products() {
                 className="hidden"
               />
               {form.image ? (
-                <img src={form.image} alt="Preview" className="w-16 h-16 rounded-xl object-cover border border-black/10 shrink-0" />
+                <img src={publicUrl(form.image)} alt="Preview" className="w-16 h-16 rounded-xl object-cover border border-black/10 shrink-0" />
               ) : (
                 <div className="w-16 h-16 rounded-xl bg-gray-100 flex items-center justify-center text-black/30 shrink-0">
                   <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.5">

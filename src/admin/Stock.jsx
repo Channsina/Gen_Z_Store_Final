@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useProducts, updateStock } from "../hooks/useProducts";
+import { publicUrl } from "../lib/publicUrl";
 
 export default function Stock() {
   const { products, loading } = useProducts();
@@ -83,7 +84,7 @@ export default function Stock() {
             <div key={p.id} className="bg-white rounded-2xl border border-black/10 p-4">
               <div className="flex items-center gap-3 mb-3">
                 {p.image && (
-                  <img src={p.image} alt={p.name} className="w-12 h-12 rounded-lg object-cover" />
+                  <img src={publicUrl(p.image)} alt={p.name} className="w-12 h-12 rounded-lg object-cover" />
                 )}
                 <div className="min-w-0">
                   <p className="font-600 truncate">{p.name}</p>

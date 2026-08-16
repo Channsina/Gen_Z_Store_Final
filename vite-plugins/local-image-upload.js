@@ -17,7 +17,6 @@ function sanitizeFilename(name) {
 
 const ALLOWED_TYPES = new Set(["image/jpeg", "image/png", "image/webp", "image/gif"]);
 
-
 export default function localImageUploadPlugin() {
   const upload = multer({
     storage: multer.diskStorage({

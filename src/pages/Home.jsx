@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useProducts } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
+import { publicUrl } from "../lib/publicUrl";
 
 const categories = [
   {
@@ -124,7 +125,7 @@ export default function Home() {
 
           {/* Image Content */}
           <div className="md:w-1/2 flex justify-center">
-            <img src="/images/homeImage/genzFasion.png" alt="GenZ fashion" className="rounded-xl shadow-2xl max-h-[450px] object-cover"/>
+            <img src={publicUrl("/images/homeImage/genzFasion.png")} alt="GenZ fashion" className="rounded-xl shadow-2xl max-h-[450px] object-cover"/>
           </div>
         </div>
       </div>
@@ -133,7 +134,7 @@ export default function Home() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mx-auto max-w-7xl p-5 mt-4">
         {categories.map((c) => (
           <div key={c.title} className="relative w-full h-56 rounded-2xl overflow-hidden group">
-            <img src={c.image} alt={c.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
+            <img src={publicUrl(c.image)} alt={c.title} className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"/>
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
             <div className="absolute bottom-0 left-0 right-0 p-4 flex items-end justify-between gap-3">
               <div className="min-w-0">
@@ -221,7 +222,7 @@ export default function Home() {
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 max-w-7xl mx-auto p-5">
         {collections.map((c) => (
           <div key={c.label} className={`relative overflow-hidden ${c.className}`}>
-            <img src={c.image} alt={c.label} className="w-full h-full object-cover"/>
+            <img src={publicUrl(c.image)} alt={c.label} className="w-full h-full object-cover"/>
             <div className="absolute inset-0 flex items-center justify-center bg-black/20">
               <h2 className="text-2xl sm:text-3xl font-bold text-white">
                 {c.label}

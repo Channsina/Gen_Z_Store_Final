@@ -2,6 +2,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useProducts, getProductsByCategory } from "../hooks/useProducts";
 import ProductCard from "../components/ProductCard";
+import { publicUrl } from "../lib/publicUrl";
 
 const tabs = [
   { label: "All Style", value: "all" },
@@ -13,7 +14,7 @@ const tabs = [
 // Hero image/heading per category, same data as the old heroImages object
 const heroImages = {
   men: {
-    src: "/images/heroImage/men.png",
+    src: "/images/heroImages/men.png",
     alt: "Men Style Hero",
     heading: "DISCOVER MEN STYLE HERE WITH",
   },
@@ -57,7 +58,7 @@ export default function Products() {
     <div>
       {/* Hero - now swaps image/heading based on the selected category */}
       <section className="relative mx-auto max-w-7xl overflow-hidden p-5 mt-3">
-        <img src={hero.src} alt={hero.alt} className="w-full h-32 md:h-70 lg:h-92 shadow-lg rounded-3xl object-cover object-center"/>
+        <img src={publicUrl(hero.src)} alt={hero.alt} className="w-full h-32 md:h-70 lg:h-92 shadow-lg rounded-3xl object-cover object-center"/>
         <div className="absolute inset-0 flex items-center justify-center p-4">
           <h1 className="text-white text-lg md:text-4xl lg:text-5xl font-extrabold text-center mb-2 drop-shadow-lg leading-tight">
             {hero.heading}

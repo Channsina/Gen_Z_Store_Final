@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { publicUrl } from "../lib/publicUrl";
 import {
   FaTruckFast,
   FaRulerCombined,
@@ -83,7 +84,7 @@ export default function Services() {
           <div className="relative">
             <div className="relative aspect-[4/5] sm:aspect-[5/4] rounded-3xl overflow-hidden bg-gradient-to-br from-purple-100 to-purple-200">
               <img
-                src="/images/goodService.png"
+                src={publicUrl("/images/goodService.png")}
                 alt="GenZ Store customer wearing the latest collection"
                 className="w-full h-full object-cover"
                 onError={(e) => (e.currentTarget.style.display = "none")}
@@ -135,17 +136,14 @@ export default function Services() {
           <div className="order-1 lg:order-2">
             <div className="aspect-[4/3] rounded-2xl overflow-hidden bg-gradient-to-br from-purple-200 to-purple-300">
               <img
-                src="/images/services/trust.jpg"
+                src={publicUrl("/images/goodService.png")}
                 alt="Packing an order at GenZ Store"
-                className="w-full h-full object-cover"
-                onError={(e) => (e.currentTarget.style.display = "none")}
-              />
+                className="w-full h-full object-cover" onError={(e) => (e.currentTarget.style.display = "none")}/>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ---------------- Services grid ---------------- */}
       <section className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 pb-20 sm:pb-28">
         <div className="text-center max-w-lg mx-auto mb-12">
           <p className="text-xs font-700 uppercase tracking-widest text-purple-600 mb-3">

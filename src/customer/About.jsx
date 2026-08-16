@@ -1,3 +1,5 @@
+import { publicUrl } from "../lib/publicUrl";
+
 export default function About() {
   return (
     <div className="bg-gray-50">
@@ -6,7 +8,7 @@ export default function About() {
         {/* About GenZ Store */}
         <div className="flex flex-col md:flex-row items-center gap-10">
           <div className="bg-white w-[400px] h-96 rounded-xl shadow-lg overflow-hidden">
-            <img src="/images/about1.png" alt="GenZ fashion" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
+            <img src={publicUrl("/images/about1.png")} alt="GenZ fashion" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
           </div>
 
           <div className="flex-1 max-w-xl">
@@ -29,7 +31,7 @@ export default function About() {
 
           {/* Image right */}
           <div className="bg-white w-[450px] h-96 rounded-xl shadow-lg overflow-hidden">
-            <img src="/images/about2.png" alt="Fashion racks" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
+            <img src={publicUrl("/images/about2.png")} alt="Fashion racks" className="w-full h-full object-cover transform transition-transform duration-500 hover:scale-110"/>
           </div>
 
           {/* Text left */}
@@ -58,7 +60,7 @@ export default function About() {
 
               {/* Image */}
               <div className="w-full sm:w-60 shrink-0">
-                <img src="/images/teacher.png" alt="Mr. Chhim Bunchhun" className="w-full h-60 sm:h-full object-cover"/>
+                <img src={publicUrl("/images/teacher.png")} alt="Mr. Chhim Bunchhun" className="w-full h-60 sm:h-full object-cover"/>
               </div>
 
               {/* Text */}
@@ -141,7 +143,7 @@ export default function About() {
 
               {/* Image */}
               <div className="w-full sm:w-60 shrink-0">
-                <img src="/images/me.png" alt="An Channsina" className="w-full h-60 sm:h-full object-cover" />
+                <img src={publicUrl("/images/me.png")} alt="An Channsina" className="w-full h-60 sm:h-full object-cover" />
               </div>
             </div>
           </div>
